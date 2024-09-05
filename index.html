@@ -4,7 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Retiradas USDT</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilo básico do formulário e da página */
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+
+        label, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            background-color: green;
+        }
+
+        /* Estilo do botão quando desabilitado */
+        .disabled-button {
+            background-color: gray;
+            cursor: not-allowed;
+            color: white;
+        }
+
+        /* Estilo do botão quando habilitado */
+        .enabled-button {
+            background-color: green;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -26,7 +66,7 @@
         <ul id="withdrawList"></ul>
 
         <h3>Total de Retiradas: <span id="totalAmount">0 USDT</span></h3>
-        <button id="generatePdf">Gerar Relatório PDF</button>
+        <button id="generatePdf" class="disabled-button" disabled>Gerar Relatório PDF</button>
     </div>
 
     <!-- Inclua jsPDF aqui -->

@@ -32,12 +32,31 @@ document.getElementById('addWithdraw').addEventListener('click', function() {
 
     // Atualiza o total
     updateTotal();
+
+    // Habilita o botão de gerar PDF
+    checkFormCompletion();
 });
 
 // Função para atualizar o valor total de retiradas
 function updateTotal() {
     const totalAmount = withdrawals.reduce((total, withdrawal) => total + withdrawal.amount, 0);
     document.getElementById('totalAmount').textContent = `${totalAmount.toFixed(2)} USDT`;
+}
+
+// Função para habilitar o botão "Gerar PDF" quando uma retirada for adicionada
+function checkFormCompletion() {
+    const generatePdfButton = document.getElementById('generatePdf');
+
+    // Verifica se há retiradas na lista e se os campos foram preenchidos
+    if (withdrawals.length > 0) {
+        generatePdfButton.disabled = false;
+        generatePdfButton.classList.remove('disabled-button');
+        generatePdfButton.classList.add('enabled-button');
+    } else {
+        generatePdfButton.disabled = true;
+        generatePdfButton.classList.remove('enabled-button');
+        generatePdfButton.classList.add('disabled-button');
+    }
 }
 
 // Função para gerar o PDF
@@ -58,4 +77,9 @@ document.getElementById('generatePdf').addEventListener('click', function() {
     doc.setFontSize(12);
     doc.text(content, 10, 10);
     doc.save('relatorio_retiradas.pdf');
+});
+
+// Desabilitar o botão de gerar PDF no início
+document.addEventListener('DOMContentLoaded', function() {
+    checkFormCompletion();
 });
